@@ -1,4 +1,36 @@
 
+/* modal */
+.modal-input {
+  border-bottom: 1px #343a40 solid;
+}
+.modal-custom {
+  width: 350px;
+}
+.modal-btn-sign-in {
+  width: 200px;
+  color: #1eb386;
+  background-color: white;
+  border: 1px #1eb386 solid;
+}
+.modal-btn-sign-up {
+  width: 200px;
+  background-color: #1eb386;
+  color: white;
+  border: none;
+}
+.full-height {
+  height: 100%;
+}
+.input-custom:focus {
+  border: none;
+  box-shadow: none;
+  border-color: white;
+  background-color: #eefffa;
+}
+.border-none {
+  border: none;
+  border-radius: 0;
+}
 .scroll {
   overflow-y: scroll;
   overflow-x: visible;
@@ -6,15 +38,15 @@
 
 .bg-teal {
     background-color: #1eb386;
-  }
-  .hr-border {
+}
+.hr-border {
     border-top: #343a40 1.5px solid;
     margin: 0;
-  }
-  #user-img {
+}
+#user-img {
     width: 50px;
     height: 50px;
-  }
+}
 
 /* messages panel */
 .message-friend {
