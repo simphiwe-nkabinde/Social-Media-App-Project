@@ -1,0 +1,38 @@
+
+.scroll {
+  overflow-y: scroll;
+  overflow-x: visible;
+}
+
+.bg-teal {
+    background-color: #1eb386;
+  }
+  .hr-border {
+    border-top: #343a40 1.5px solid;
+    margin: 0;
+  }
+  #user-img {
+    width: 50px;
+    height: 50px;
+  }
+
+/* messages panel */
+.message-friend {
+    width: 300px;
+    background-color: #607d8b;
+}
+.message-user {
+    width: 300px;
+    background-color: #247d62;
+}
+
+#message-input {
+  position: sticky;
+  bottom: 5px;
+  border-bottom: 2px #1eb386 solid;
+  margin-top: 100%;
+}
+#message-send-btn {
+  height: 100%;
+  width: 100%;
+}
