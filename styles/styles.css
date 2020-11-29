@@ -1,5 +1,12 @@
 
 /* modal */
+body.modal-open > :not(.modal) {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+}
 .modal-input {
   border-bottom: 1px #343a40 solid;
 }
