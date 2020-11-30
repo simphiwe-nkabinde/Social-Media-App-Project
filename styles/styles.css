@@ -1,4 +1,11 @@
 
+/* navbar */
+.navbar-brand > img{
+  width: 150px;
+}
+#searchBar {
+  width: 500px;
+}
 /* modal */
 body.modal-open > :not(.modal) {
   -webkit-filter: blur(4px);
@@ -55,14 +62,27 @@ body.modal-open > :not(.modal) {
     height: 50px;
 }
 
+.friendRow:hover {
+  background-color: #37c59a;
+}
+
+.friendRow > a {
+  text-decoration: none;
+}
+
 /* messages panel */
 .message-friend {
-    width: 300px;
-    background-color: #607d8b;
+  width: fit-content;
+  max-width: 65%;
+  background-color: #607d8b;
+  border-radius: 10px 10px 10px 0;
 }
 .message-user {
-    width: 300px;
-    background-color: #247d62;
+  width: fit-content;
+  max-width: 65%;
+  /*background-color: #247d62;*/
+  border-radius: 10px 10px 0 10px;
+  background-image: linear-gradient(to bottom right, #46967e, #247d62);
 }
 
 #message-input {
@@ -71,7 +91,33 @@ body.modal-open > :not(.modal) {
   border-bottom: 2px #1eb386 solid;
   margin-top: 100%;
 }
+
 #message-send-btn {
   height: 100%;
   width: 100%;
+}
+
+#message-panel {
+  overflow-x: hidden; 
+  overflow-y: auto;
+  height: auto;
+  /*height: auto;*/
+  max-height: 790px;
+  
+}
+
+#message-panel::-webkit-scrollbar {
+  width: 5px;
+  /* toggle this incase you want to see it or not */
+  display: none;
+  
+}
+#message-panel::-webkit-scrollbar-track {
+  background: rgba(192, 125, 0, 0);
+}
+
+#message-panel::-webkit-scrollbar-thumb {
+  background-color: #1eb286;
+  border-radius: 0px;  
+  border: 3px solid rgba(255, 166, 0, 0);
 }

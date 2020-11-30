@@ -14,10 +14,10 @@
 
     <!-- LOGIN MODAL -->
 
-    <!-- Button trigger modal -->
+    <!-- Button trigger modal 
 <button type="button" data-toggle="modal" data-target="#staticBackdrop">
   Launch static backdrop modal
-</button>
+</button>-->
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -53,7 +53,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
         <form class="form-inline my-2 mx-auto my-lg-0">
-          <input class="form-control form-control-sm border-0 mr-sm-2 rounded-0" type="search" placeholder="Search for users" aria-label="Search">
+          <input id="searchBar" class="form-control form-control-sm border-0 mr-sm-2 rounded-0" type="search" placeholder="Search for users" aria-label="Search">
           <button class="btn-sm border-0 btn-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
 
@@ -84,7 +84,7 @@
           <hr style="border-top: #343a40 3px solid;">
           <ul class="list-unstyled m-3">
             <!-- friend1 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp1.jpg" alt="">
               <a href="#" class=" col align-self-center">
                 <h5 class="text-light font-weight-light">Gregory McDonalds</h5>
@@ -93,7 +93,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend2 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp2.jpg" alt="">
               <a href="#" class="col align-self-center">
                 <h5 class="text-light font-weight-light">Molly Sanders</h5>
@@ -102,7 +102,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend3 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp3.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Nick Wisousky</h5>
@@ -111,7 +111,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend4 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp4.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Leah Frederick</h5>
@@ -120,7 +120,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend5 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp5.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Lee Xiou</h5>
@@ -129,7 +129,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend6 -->
-            <li class="row py-3">
+            <li class="row py-3 friendRow">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp6.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Natalie Hendricks</h5>
@@ -156,34 +156,57 @@
           <div id="message-panel">
             <!-- message1 -->
             <div class="message-friend mt-3 text-light p-2 shadow">
-              <p class="message-content">this is a messaage by the friend Lorem ipsum dolor sit amet.</p>
+              <p class="message-content">this is a messaage by the friend.</p>
               <p class="message-time-stamp m-0 font-weight-light small">14:35</p>
             </div>
             <!-- message2 -->
             <div class="message-user text-light mt-3 p-2 ml-auto shadow">
+              <p class="message-content">this is a message by the user.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
+            </div>
+            <!-- message3 -->
+            <div class="message-friend mt-3 text-light p-2 shadow">
+              <p class="message-content">this is a messaage by the friend Lorem ipsum dolor sit amet.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:35</p>
+            </div>
+            <!-- message4 -->
+            <div class="message-user text-light mt-3 p-2 ml-auto shadow">
+              <p class="message-content">this is a really long message by the user Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, modi.consectetur, adipisicing elit. Quasi, modi.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
+            </div>
+            <!-- message5 -->
+            <div class="message-friend mt-3 text-light p-2 shadow">
+              <p class="message-content">this is a messaage by the friend Lorem ipsum dolor sit amet, adipisicing elit. Quasi, modi.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:35</p>
+            </div>
+            <!-- message6 -->
+            <div class="message-user text-light mt-3 p-2 ml-auto shadow">
+              <p class="message-content">this is a message by the user Lorem ipsum dolor sit! Consectetur elit</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
+            </div>
+            <!-- message7 -->
+            <div class="message-user text-light mt-3 p-2 ml-auto shadow">
+              <p class="message-content">this is a message by the user Lorem ipsum dolor sit.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
+            </div>
+            <!-- message8 -->
+            <div class="message-friend mt-3 text-light p-2 shadow">
+              <p class="message-content">this is a messaage by the friend Lorem ipsum dolor sit amet.</p>
+              <p class="message-time-stamp m-0 font-weight-light small">14:35</p>
+            </div>
+            <!-- message9 -->
+            <div class="message-user text-light mt-3 p-2 ml-auto shadow">
               <p class="message-content">this is a message by the user Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, modi.</p>
               <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
             </div>
-            <div>
-              <!-- message1 -->
-              <div class="message-friend mt-3 text-light p-2 shadow">
-                <p class="message-content">this is a messaage by the friend Lorem ipsum dolor sit amet.</p>
-                <p class="message-time-stamp m-0 font-weight-light small">14:35</p>
-              </div>
-              <!-- message2 -->
-              <div class="message-user text-light mt-3 p-2 ml-auto shadow">
-                <p class="message-content">this is a message by the user Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi, modi.</p>
-                <p class="message-time-stamp m-0 font-weight-light small">14:50</p>
-              </div>
-          </div>
 
           <!-- user message input -->
           <form class="form-row mt-3 shadow" id="message-input">
             <div class="col p-0">
-              <input class="form-control form-control border-0 rounded-0" type="text" placeholder="Type ypur message here" aria-label="Search">
+              <input id="msg-input" class="form-control form-control border-0 rounded-0" type="text" placeholder="Type your message here" aria-label="Search">
             </div>
             <div class="col-2 p-0">
-              <button class="border-0 bg-teal" type="submit" id="message-send-btn">Send</button>
+              <button onclick="sendMsg()" class="border-0 bg-teal" type="submit" id="message-send-btn">Send</button>
             </div>
             
           </form>

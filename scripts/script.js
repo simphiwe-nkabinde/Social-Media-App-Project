@@ -113,3 +113,50 @@ function User(name, password) {
     this.name = name ;
     this.password = password ;
 }
+
+//--------------------------------SEND MESSAGE----------------------------------
+
+/* Prevents page refresh from message send button */
+$("#message-input").submit(function(e) {
+    e.preventDefault();
+});
+
+function sendMsg(){
+    var msg = document.getElementById("msg-input").value;
+
+    //prevents send if field is empty
+    if (msg == '') {
+        return
+    }else {
+        //creates a date variable
+        var d = new Date();
+        
+        //message div created 
+        let msgDiv = document.createElement('div') ;
+        msgDiv.setAttribute('class', 'message-user text-light mt-3 p-2 ml-auto shadow') ;
+        
+        //message paragraph created
+        let msgP = document.createElement('p') ;
+        msgP.setAttribute('class', 'message-content') ;
+        msgP.innerHTML = msg
+
+        //time paragraph created
+        let msgT = document.createElement('p') ;
+        msgT.setAttribute('class', 'message-time-stamp m-0 font-weight-light small')
+        msgT.innerHTML = d.getHours() + ":" + d.getMinutes()
+
+        msgDiv.appendChild(msgP)
+        msgDiv.appendChild(msgT)
+        
+        //inserts the mesage before the form ( because the form is in the same div as the messages )
+        $( msgDiv ).insertBefore( "#message-input" );
+
+        //clears the send box
+        document.getElementById("msg-input").value = ''
+
+        //scrolls to show the newly sent message
+        var elem = document.getElementById('message-panel');
+        elem.scrollTop = elem.scrollHeight;
+    }
+}
+    
