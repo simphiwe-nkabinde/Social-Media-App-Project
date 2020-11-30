@@ -5,11 +5,10 @@ var userInfo = []
 //Checks to see if a user is logged in
 
 function firstLoad(){
-    if (sessionStorage.getItem("isLoggedIn") === null ||
-    sessionStorage.getItem("isLoggedIn") === "false")
+    if (localStorage.getItem("isLoggedIn") === null)
     {
-        sessionStorage.setItem("isLoggedIn", false);
-        sessionStorage.setItem("Users", JSON.stringify(userArray));
+        localStorage.setItem("isLoggedIn", false);
+        localStorage.setItem("Users", JSON.stringify(userArray));
     }
 
     updatePage()
@@ -18,7 +17,7 @@ function firstLoad(){
 //--------------------------------LOG IN ACCOUNT----------------------------------
 
 function logIn() {
-    userArray = JSON.parse(sessionStorage.getItem("Users"));
+    userArray = JSON.parse(localStorage.getItem("Users"));
     var userInfo = []
     //data-dismiss="modal" - removed from HTML
     let success = false ;
@@ -29,14 +28,14 @@ function logIn() {
             success = true ;
             
             //if the name password combo exists, the object is push to the "current user"
-            sessionStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("isLoggedIn", true);
             userInfo.push(userArray[i])
             
             //user is alerted and the login modal is hidden
             alert("Logged in.")
             $('#staticBackdrop').modal('hide')
 
-            sessionStorage.setItem("currentUser", JSON.stringify(userInfo[0]));
+            localStorage.setItem("currentUser", JSON.stringify(userInfo[0]));
             updatePage()
         }
     }
@@ -53,7 +52,7 @@ function logIn() {
 //--------------------------------CREATE ACCOUNT----------------------------------
 
 function addUser() {
-    userArray = JSON.parse(sessionStorage.getItem("Users"));
+    userArray = JSON.parse(localStorage.getItem("Users"));
     let con = true ;
     //checks if the user exists
     for (i=0; i < userArray.length; i++) {
@@ -68,18 +67,18 @@ function addUser() {
         || document.getElementById("loginPassword").value == ''){
             alert("Please fill all fields.")
         }
-        //if all requirements are met, a user object is created and pushed to the array and stored to session info
+        //if all requirements are met, a user object is created and pushed to the array and stored to local info
         else {
             let newUser = new User(
                 document.getElementById("loginUserName").value,
                 document.getElementById("loginPassword").value,
             );
             userArray.push(newUser);
-            sessionStorage.setItem("Users", JSON.stringify(userArray)) ;
-            sessionStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("Users", JSON.stringify(userArray)) ;
+            localStorage.setItem("isLoggedIn", true);
             $('#staticBackdrop').modal('hide');
-
-            sessionStorage.setItem("currentUser", JSON.stringify(newUser));
+            document.getElementById("loginPassword").value = ''
+            localStorage.setItem("currentUser", JSON.stringify(newUser));
             
         }
     } 
@@ -90,10 +89,11 @@ function addUser() {
 
 function logOut(){
     
+    $('#staticBackdrop').modal('show');
     //removes isLoggedIn flag so the login modal is called
-    sessionStorage.setItem("isLoggedIn", false);
-    sessionStorage.removeItem("currentUser")
-    document.location.reload ()
+    localStorage.setItem("isLoggedIn", false);
+    localStorage.removeItem("currentUser")
+    document.getElementById("loginPassword").value = ''
     firstLoad()
 
 }
@@ -101,8 +101,10 @@ function logOut(){
 //--------------------------------UPDATE PAGE----------------------------------
 
 function updatePage(){
-    currentName = JSON.parse(sessionStorage.getItem("currentUser")).name;
-    document.getElementById("userNameTop").innerHTML = currentName
+    if (localStorage.getItem("currentUser") != null){
+        currentName = JSON.parse(localStorage.getItem("currentUser")).name;
+        document.getElementById("userNameTop").innerHTML = currentName
+    }
 }
 
 //--------------------------------USER CONSTRUCTOR----------------------------------
