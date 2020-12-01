@@ -17,20 +17,43 @@ body.modal-open > :not(.modal) {
 .modal-input {
   border-bottom: 1px #343a40 solid;
 }
+
+.modal-input input{
+  background-color: white;
+  transition: all .20s ease;
+}
+.modal-input input:focus{
+  background-color: rgba(228, 245, 232, 0.438);
+}
+
 .modal-custom {
   width: 350px;
 }
 .modal-btn-sign-in {
   width: 200px;
+  height: 30px;
   color: #1eb386;
   background-color: white;
   border: 1px #1eb386 solid;
+  transition: all .15s ease;
 }
+
+.modal-btn-sign-in:hover {
+  color: white;
+  background-color: #1eb386;
+}
+
 .modal-btn-sign-up {
   width: 200px;
+  height: 30px;
   background-color: #1eb386;
   color: white;
   border: none;
+  transition: all .15s ease;
+}
+
+.modal-btn-sign-up:hover {
+  background-color: #23c292;
 }
 .full-height {
   height: 100%;
@@ -71,18 +94,24 @@ body.modal-open > :not(.modal) {
 }
 
 /* messages panel */
-.message-friend {
+.message-friend,
+.message-user {
   width: fit-content;
+  width: -moz-fit-content;
   max-width: 65%;
+}
+
+.message-friend {
   background-color: #607d8b;
   border-radius: 10px 10px 10px 0;
 }
+.message-user p:nth-child(2) {
+
+  text-align: right;
+}
 .message-user {
-  width: fit-content;
-  max-width: 65%;
-  /*background-color: #247d62;*/
-  border-radius: 10px 10px 0 10px;
   background-image: linear-gradient(to bottom right, #46967e, #247d62);
+  border-radius: 10px 10px 0 10px;
 }
 
 #message-input {
@@ -92,9 +121,19 @@ body.modal-open > :not(.modal) {
   margin-top: 100%;
 }
 
+#msg-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 #message-send-btn {
   height: 100%;
   width: 100%;
+  outline: none;
+}
+
+#message-send-btn:hover {
+  background-color: #1a9973;
 }
 
 #message-panel {
@@ -120,4 +159,8 @@ body.modal-open > :not(.modal) {
   background-color: #1eb286;
   border-radius: 0px;  
   border: 3px solid rgba(255, 166, 0, 0);
+}
+
+#message-panel {
+  scroll-behavior: smooth;
 }
