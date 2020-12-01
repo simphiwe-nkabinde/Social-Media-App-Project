@@ -122,28 +122,32 @@ $("#message-input").submit(function(e) {
 });
 
 function sendMsg(){
-    var msg = document.getElementById("msg-input").value;
+    var msg = document.getElementById("msg-input").value ;
 
     //prevents send if field is empty
     if (msg == '') {
         return
     }else {
-        //creates a date variable
-        var d = new Date();
+        //creates 24hour a time variable
+        var curTime = new Date().toLocaleTimeString([], { 
+            hour: '2-digit', 
+            minute: "2-digit", 
+            hour12: false 
+        });
         
         //message div created 
-        let msgDiv = document.createElement('div') ;
-        msgDiv.setAttribute('class', 'message-user text-light mt-3 p-2 ml-auto shadow') ;
+        let msgDiv = document.createElement('div') 
+        msgDiv.setAttribute('class', 'message-user text-light mt-3 p-2 ml-auto shadow') 
         
         //message paragraph created
-        let msgP = document.createElement('p') ;
-        msgP.setAttribute('class', 'message-content') ;
-        msgP.innerHTML = msg
+        let msgP = document.createElement('p') 
+        msgP.setAttribute('class', 'message-content') 
+        msgP.appendChild(document.createTextNode(msg)) 
 
         //time paragraph created
         let msgT = document.createElement('p') ;
-        msgT.setAttribute('class', 'message-time-stamp m-0 font-weight-light small')
-        msgT.innerHTML = d.getHours() + ":" + d.getMinutes()
+        msgT.setAttribute('class', 'message-time-stamp m-0 font-weight-light small') ;
+        msgT.appendChild(document.createTextNode(curTime)) ;
 
         msgDiv.appendChild(msgP)
         msgDiv.appendChild(msgT)
@@ -152,7 +156,7 @@ function sendMsg(){
         $( msgDiv ).insertBefore( "#message-input" );
 
         //clears the send box
-        document.getElementById("msg-input").value = ''
+        document.getElementById("msg-input").value = '' ;
 
         //scrolls to show the newly sent message
         var elem = document.getElementById('message-panel');
