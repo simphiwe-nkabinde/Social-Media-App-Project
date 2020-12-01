@@ -116,6 +116,20 @@ function User(name, password) {
 
 //--------------------------------SEND MESSAGE----------------------------------
 
+//checks if message input is empty, if it isnt the text dissapears and the icon appears
+setInterval(checkTextboxChanged, 0.5);
+
+function checkTextboxChanged() {
+    var currentValue = $('#msg-input').val();
+    if (currentValue != "") {
+        $("#sendText").hide();
+        $("#sendIcon").show();
+    }else {
+        $("#sendText").show();
+        $("#sendIcon").hide();
+    }
+}
+
 /* Prevents page refresh from message send button */
 $("#message-input").submit(function(e) {
     e.preventDefault();
