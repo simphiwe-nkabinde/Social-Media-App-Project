@@ -82,12 +82,12 @@
     <div class="container-fluid bg-dark p-4">
       <div class="row">
         <!-- friends section -->
-        <div class="col-4 bg-teal p-3 shadow-lg d-none d-md-table-cell">
+        <div class="col-md-4 bg-teal p-3 shadow-lg d-md-table-cell" id="friends-container">
           <h4 class="text-light">Friends</h4>
           <hr style="border-top: #343a40 3px solid;">
           <ul class="list-unstyled m-3">
             <!-- friend1 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp1.jpg" alt="">
               <a href="#" class=" col align-self-center">
                 <h5 class="text-light font-weight-light">Gregory McDonalds</h5>
@@ -96,7 +96,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend2 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp2.jpg" alt="">
               <a href="#" class="col align-self-center">
                 <h5 class="text-light font-weight-light">Molly Sanders</h5>
@@ -105,7 +105,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend3 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp3.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Nick Wisousky</h5>
@@ -114,7 +114,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend4 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp4.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Leah Frederick</h5>
@@ -123,7 +123,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend5 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp5.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Lee Xiou</h5>
@@ -132,7 +132,7 @@
             </li>
             <hr class="hr-border">
             <!-- friend6 -->
-            <li class="row py-3 friendRow">
+            <li class="row py-3 friendRow" onclick="showMessages()">
               <img class="rounded-circle col-2 mr-3 p-0 border border-dark shadow-sm" src="img/pp6.jpg" alt="">
               <a href="#"  class="col align-self-center">
                 <h5 class="text-light font-weight-light">Natalie Hendricks</h5>
@@ -144,9 +144,12 @@
           </ul>
         </div>
         <!-- messages panel -->
-        <div class="col ml-3 shadow-lg p-4" style="background-color: #f1f1f1;">
+        <div class="col ml-3 shadow-lg p-4" style="background-color: #f1f1f1;" id="msg-container">
           <!-- contact profile -->
-          <div class="d-flex">
+          <div class="d-flex p-md-0 pl-3">
+            
+            <button type="button" class="btn d-md-none" id="show-friends-btn" style="float: left;" onclick="showFriends()"><span>&#8249;</span></button><!-- show friends btn for moblie size -->
+
             <img src="/img/pp2.jpg" alt="user" class="rounded-circle mx-3" id="user-img">
               <div>
                 <p class="font-weight-bold m-0">Molly Sanders</p>

@@ -177,4 +177,21 @@ function sendMsg(){
         elem.scrollTop = elem.scrollHeight;
     }
 }
+
+//----------------------show friends button-------------------------------
+
+//for mobile screen size. hides messages panel and shows friends list
+function showFriends() {
+    $('#friends-container').show();
+    $('#msg-container').hide();
+}
+
+//----------------------show messages------------------------------------
+
+//for mobile screen size. when a friend is clicled on, it hides friends list and shows messages panel
+
+function showMessages() {
+    $('#friends-container').hide();
+    $('#msg-container').show();
+}
     

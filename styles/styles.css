@@ -164,3 +164,17 @@ body.modal-open > :not(.modal) {
 #message-panel {
   scroll-behavior: smooth;
 }
+
+#msg-container {
+  display: none;
+}
+
+#show-friends-btn {
+  font-size: 120px;
+  color: #1eb386;
+  padding: 0%;
+  position: absolute;
+  top: -60px;
+  left: 5px;
+  border: none;
+}
