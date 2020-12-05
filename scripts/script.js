@@ -1,9 +1,43 @@
+
+//Pixel width where the panels collapse
+const pageBreakPoint = 768;
+
+//JQuery page ready functions
+$( document ).ready(function() {
+    //This listens for the user to hit enter after typing in their username, 
+    //when they do the password field is focused
+    document.querySelector("#loginUserName").addEventListener("keyup", event => {
+        if(event.key !== "Enter") return;
+        document.querySelector("#loginPassword").focus(); 
+    });
+
+    //This listens for the user to hit enter after typing in their password, 
+    //when they do 'Sign in' button is clicked
+    document.querySelector("#loginPassword").addEventListener("keyup", event => {
+        if(event.key !== "Enter") return;
+        document.querySelector("#signInBtn").click(); 
+        event.preventDefault(); 
+    });
+    
+    //checks if message input is empty, if it isnt the text dissapears and the icon appears
+    setInterval(checkTextboxChanged, 0.5);
+    function checkTextboxChanged() {
+        var currentValue = $('#msg-input').val();
+        if (currentValue != "") {
+            $("#sendText").hide();
+            $("#sendIcon").show();
+        }else {
+            $("#sendText").show();
+            $("#sendIcon").hide();
+        }
+    }
+    
+});
+
 var userArray = []
 var userInfo = []
 
-
 //Checks to see if a user is logged in
-
 function firstLoad(){
     if (localStorage.getItem("isLoggedIn") === null)
     {
@@ -116,19 +150,8 @@ function User(name, password) {
 
 //--------------------------------SEND MESSAGE----------------------------------
 
-//checks if message input is empty, if it isnt the text dissapears and the icon appears
-setInterval(checkTextboxChanged, 0.5);
-
-function checkTextboxChanged() {
-    var currentValue = $('#msg-input').val();
-    if (currentValue != "") {
-        $("#sendText").hide();
-        $("#sendIcon").show();
-    }else {
-        $("#sendText").show();
-        $("#sendIcon").hide();
-    }
-}
+// Get the input field
+var input = document.getElementById("myInput");
 
 /* Prevents page refresh from message send button */
 $("#message-input").submit(function(e) {
@@ -137,7 +160,7 @@ $("#message-input").submit(function(e) {
 
 function sendMsg(){
     var msg = document.getElementById("msg-input").value ;
-
+    var msgPanel = document.getElementById("message-panel");
     //prevents send if field is empty
     if (msg == '') {
         return
@@ -166,8 +189,9 @@ function sendMsg(){
         msgDiv.appendChild(msgP)
         msgDiv.appendChild(msgT)
         
+        msgPanel.appendChild(msgDiv)
         //inserts the mesage before the form ( because the form is in the same div as the messages )
-        $( msgDiv ).insertBefore( "#message-input" );
+        //$( msgDiv ).insertBefore( "#message-input" );
 
         //clears the send box
         document.getElementById("msg-input").value = '' ;
@@ -182,16 +206,21 @@ function sendMsg(){
 
 //for mobile screen size. hides messages panel and shows friends list
 function showFriends() {
-    $('#friends-container').show();
-    $('#msg-container').hide();
+    if ($(window).width() < pageBreakPoint){
+        $('#friends-container').fadeIn('fast');
+    }
 }
 
 //----------------------show messages------------------------------------
 
-//for mobile screen size. when a friend is clicled on, it hides friends list and shows messages panel
-
+//for mobile screen size. when a friend is clicked on, it hides friends list and shows messages panel
 function showMessages() {
-    $('#friends-container').hide();
-    $('#msg-container').show();
+    if ($(window).width() < pageBreakPoint){
+        $('#friends-container').fadeOut('fast');
+        $('#msg-container').fadeIn('fast');
+    }
+    if ($(window).width() > pageBreakPoint){
+        $('#msg-container').fadeIn(80);
+    }
 }
     

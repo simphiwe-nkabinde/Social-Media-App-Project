@@ -1,12 +1,50 @@
 
-/* navbar */
+/* --------------- GENERAL BODY --------------- */
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body ::-webkit-scrollbar { width: 0 !important }  
+body { overflow: -moz-scrollbars-none; }
+body { -ms-overflow-style: none; }
+
+body {
+  background-color: #36393d;
+}
+
+#mainRow {
+  height: calc(100vh - 4em);
+}
+
+/* ---------------- NAVBAR ---------------- */
+
 .navbar-brand > img{
   width: 150px;
+  height: 15%
 }
 #searchBar {
+  height: 28px;
   width: 500px;
+  padding-right: 0px;
+  background-color: #ffffffa4;
+  transition: 150ms;
 }
-/* modal */
+
+#searchBar:focus {
+  background-color: #ffffffec;
+  outline: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  #searchBar {
+    width: 250px;
+  }
+}
+
+/* --------------- MODAL --------------- */
+
 body.modal-open > :not(.modal) {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
@@ -55,9 +93,7 @@ body.modal-open > :not(.modal) {
 .modal-btn-sign-up:hover {
   background-color: #23c292;
 }
-.full-height {
-  height: 100%;
-}
+
 .input-custom:focus {
   border: none;
   box-shadow: none;
@@ -73,6 +109,8 @@ body.modal-open > :not(.modal) {
   overflow-x: visible;
 }
 
+/* --------------- FRIENDS --------------- */
+
 .bg-teal {
     background-color: #1eb386;
 }
@@ -81,8 +119,48 @@ body.modal-open > :not(.modal) {
     margin: 0;
 }
 #user-img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+}
+
+#friends-container,
+#msg-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+@media only screen and (max-width: 767px) {
+  #msg-container {
+    margin-left: 1em;
+  }
+  #searchBar {
+    width: 200px;
+  }
+}
+
+#contactBod {
+  height: calc(100vh - 12em);
+  overflow: scroll;
+  scrollbar-width: none;
+  background: linear-gradient(360deg, rgba(59,59,59,0) 82%, rgba(0, 0, 0, 0.041) 100%);
+  /* Scroll fadeout bottom*/
+  -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 97%, transparent 100%);
+}
+
+#friends-container {
+  margin-left: 1em;
+}
+
+#contactHead {
+  margin-top: 15px;
+  padding-left: 0px;
+}
+
+.friendRow {
+  margin-top: 0px;
+  transition: 85ms ease-in-out;
 }
 
 .friendRow:hover {
@@ -91,14 +169,29 @@ body.modal-open > :not(.modal) {
 
 .friendRow > a {
   text-decoration: none;
+  overflow: hidden;
 }
 
-/* messages panel */
+.friendRow > img {
+  margin-left: 10px;
+  width: 50%;
+  height: 50%;
+}
+
+.prevMessage{
+  white-space: nowrap; 
+  overflow:hidden; 
+  text-overflow: ellipsis;
+}
+
+/* --------------- MESSAGES PANEL --------------- */
+
 .message-friend,
 .message-user {
   width: fit-content;
   width: -moz-fit-content;
   max-width: 65%;
+  margin-bottom: 10px;
 }
 
 .message-friend {
@@ -106,7 +199,6 @@ body.modal-open > :not(.modal) {
   border-radius: 10px 10px 10px 0;
 }
 .message-user p:nth-child(2) {
-
   text-align: right;
 }
 .message-user {
@@ -115,10 +207,9 @@ body.modal-open > :not(.modal) {
 }
 
 #message-input {
-  position: sticky;
-  bottom: 5px;
+  position: relative;
+  bottom: 15px;
   border-bottom: 2px #1eb386 solid;
-  margin-top: 100%;
 }
 
 #msg-input:focus {
@@ -137,28 +228,14 @@ body.modal-open > :not(.modal) {
 }
 
 #message-panel {
+  margin-top: 0px;
+  padding-top: 0px;
+  margin-bottom: 0px;
   overflow-x: hidden; 
   overflow-y: auto;
-  height: auto;
-  /*height: auto;*/
-  max-height: 790px;
-  
-}
-
-#message-panel::-webkit-scrollbar {
-  width: 5px;
-  /* toggle this incase you want to see it or not */
-  display: none;
-  
-}
-#message-panel::-webkit-scrollbar-track {
-  background: rgba(192, 125, 0, 0);
-}
-
-#message-panel::-webkit-scrollbar-thumb {
-  background-color: #1eb286;
-  border-radius: 0px;  
-  border: 3px solid rgba(255, 166, 0, 0);
+  height: calc(100vh - 15em);
+  scrollbar-width: none;
+  background: linear-gradient(360deg, rgba(59,59,59,0) 82%, rgba(0,0,0,0.018627519367121814) 100%);
 }
 
 #message-panel {
@@ -166,15 +243,22 @@ body.modal-open > :not(.modal) {
 }
 
 #msg-container {
-  display: none;
+  background-image: linear-gradient(to top, #8b8b8b2c, #f1f1f1);
+  /*display: none;*/
 }
 
 #show-friends-btn {
-  font-size: 120px;
+  font-size: 30px;
   color: #1eb386;
-  padding: 0%;
-  position: absolute;
-  top: -60px;
-  left: 5px;
-  border: none;
+  border: none !important;
+  outline: none;
+  background-color: #f1f1f100;  
+  padding-left: 5px;
+  padding-right: 4px;
+}
+
+@media only screen and (min-width: 767px) {
+  #show-friends-btn {
+    display: none;
+  }
 }
