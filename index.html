@@ -31,13 +31,19 @@
             <img src="img/random_logo.png" style="width: 80%; margin-left: auto;margin-right: auto; margin-top: 20px;">
             <!-- <h5 class="modal-title mx-auto" id="staticBackdropLabel">RANDOM</h5> -->
           </div>
+          <div style="height: 15px;">
+            <p id="loginErr" style="color: red; text-align: center; display: none;">Username or Password incorrect</p>
+            <p id="loginErrExist" style="color: red; text-align: center; display: none;">Username aleady exists</p>
+            <p id="loginSucc" style="color: rgb(0, 199, 66); text-align: center; display: none;">Successfully logged in!</p>
+            <p id="loginSuccCreate" style="color: rgb(0, 199, 66); text-align: center; display: none;">Account created and logged in!</p>
+          </div>
           <div class="modal-body">
             <form>
               <div class="form-group modal-input">
                 <label for="loginUserName">Username :</label>
                 <input type="text" class="form-control border-0 input-custom" id="loginUserName" aria-describedby="emailHelp">
               </div>
-              <div class="form-group modal-input">
+              <div class="form-group modal-input" style="margin-bottom: 40px;">
                 <label for="loginPassword">Password :</label>
                 <input type="password" class="form-control border-0 modal-input input-custom" id="loginPassword">
               </div>
@@ -49,7 +55,7 @@
       </div>
     </div>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-teal" style="z-index: 1;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-teal" style="z-index: 2;">
       <a class="navbar-brand" href="#"><img src="img/random_logo.png"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,7 +69,7 @@
         </form>
 
         <!-- user dropdown menu -->
-        <div class="nav-item navbar-nav dropdown">
+        <div class="nav-item navbar-nav dropdown" style="margin-right: 20px;">
           <a class="nav-link d-flex m-0 p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="img/pp1.jpg" alt="user" class="rounded-circle mx-3 border border-dark shadow-sm" id="user-img">
             <div>
@@ -85,7 +91,7 @@
     <div class="container-fluid">
       <div class="row" id="mainRow">
         <!-- FRIENDS WINDOW -->
-        <div id="friends-container" class="col-md-4 bg-teal p-3 shadow-lg d-md-table-cell">
+        <div id="friends-container" class="col-md-4 bg-teal p-3 shadow-lg">
           <h4 class="text-light" style="margin-top: 10px; margin-bottom: 22px;">Friends</h4>
           <hr style="border-top: #343a40 2px solid; margin-bottom: 0px;">
           <div id="contactBod" >
@@ -173,8 +179,13 @@
           </div>
           <hr style="margin-bottom: 0px;">
 
+          <!--Scroll down button-->
+          <div id="scrollToBottomBtn" onclick="scrollDown('message-panel')">
+            <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+          </div>
+
           <!-- messages -->
-          <div id="message-panel">
+          <div id="message-panel" onscroll="checkScroll('message-panel')">
             <!-- message1 -->
             <div class="message-friend mt-3 text-light p-2 shadow">
               <p class="message-content">this is a messaage by the friend.</p>

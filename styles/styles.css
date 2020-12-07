@@ -3,7 +3,7 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 body ::-webkit-scrollbar { width: 0 !important }  
@@ -118,24 +118,32 @@ body.modal-open > :not(.modal) {
     border-top: #343a40 1.5px solid;
     margin: 0;
 }
-#user-img {
-    width: 45px;
-    height: 45px;
-}
 
 #friends-container,
 #msg-container {
+    z-index: 1;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-right: 1em;
 }
 
+@media only screen and (max-width: 768px) {
+  #searchBar {
+    width: 200px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   #msg-container {
     margin-left: 1em;
+    position: absolute;
+    z-index: 0;
+    width: inherit;
+    height: calc(100vh - 6em);
+    margin-left: 1em;
   }
-  #searchBar {
-    width: 200px;
+  .prevMessage {
+    display: initial !important;
   }
 }
 
@@ -151,6 +159,14 @@ body.modal-open > :not(.modal) {
 
 #friends-container {
   margin-left: 1em;
+  max-width: 500px;
+}
+
+@media only screen and (max-width: 768px) {
+  #friends-container {
+    max-width: 10000px;
+  }
+
 }
 
 #contactHead {
@@ -185,6 +201,16 @@ body.modal-open > :not(.modal) {
 }
 
 /* --------------- MESSAGES PANEL --------------- */
+
+#msg-container {
+  background-image: linear-gradient(to top, #8b8b8b2c, #f1f1f1);
+  /*display: none;*/
+}
+
+#user-img {
+  width: 45px;
+  height: 45px;
+}
 
 .message-friend,
 .message-user {
@@ -223,6 +249,10 @@ body.modal-open > :not(.modal) {
   outline: none;
 }
 
+#sendIcon {
+  color: white;
+}
+
 #message-send-btn:hover {
   background-color: #1a9973;
 }
@@ -242,9 +272,39 @@ body.modal-open > :not(.modal) {
   scroll-behavior: smooth;
 }
 
-#msg-container {
-  background-image: linear-gradient(to top, #8b8b8b2c, #f1f1f1);
-  /*display: none;*/
+#scrollToBottomBtn{
+  border-radius: 50%; 
+  background-color: rgb(0, 0, 0);
+  color: white;
+  height: 50px; 
+  width: 50px;
+  margin-left: 15px;
+  position: absolute;
+  bottom: 7em;
+  right: 1em;
+  text-align: center;
+  vertical-align: middle;
+  display: none;
+  opacity: 60%;
+  cursor: pointer;
+  transition: 0.1s;
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+}
+
+@keyframes fadeIn {
+  0%   {background-color: rgba(0, 0, 0, 0);}
+  100% {background-color: rgb(0, 0, 0);}
+}
+
+#scrollToBottomBtn:hover {
+  opacity: 90%; 
+  color: #1eb386;
+}
+
+#scrollToBottomBtn  > i{
+  font-size: 33px; 
+  padding-top: 9px; 
 }
 
 #show-friends-btn {
@@ -257,7 +317,7 @@ body.modal-open > :not(.modal) {
   padding-right: 4px;
 }
 
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 768px) {
   #show-friends-btn {
     display: none;
   }

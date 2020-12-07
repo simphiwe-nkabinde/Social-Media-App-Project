@@ -20,15 +20,16 @@ $( document ).ready(function() {
     });
     
     //checks if message input is empty, if it isnt the text dissapears and the icon appears
-    setInterval(checkTextboxChanged, 0.5);
+    setInterval(checkTextboxChanged, 80);
     function checkTextboxChanged() {
         var currentValue = $('#msg-input').val();
         if (currentValue != "") {
             $("#sendText").hide();
-            $("#sendIcon").show();
+            $("#sendIcon").fadeIn(150);
+
         }else {
-            $("#sendText").show();
             $("#sendIcon").hide();
+            $("#sendText").fadeIn(150);
         }
     }
     
@@ -64,11 +65,10 @@ function logIn() {
             //if the name password combo exists, the object is push to the "current user"
             localStorage.setItem("isLoggedIn", true);
             userInfo.push(userArray[i])
-            
+            $('#loginSucc').fadeIn(60).delay(700).fadeOut();
             //user is alerted and the login modal is hidden
-            alert("Logged in.")
-            $('#staticBackdrop').modal('hide')
-
+            setTimeout(function(){ $('#staticBackdrop').modal('hide') }, 700);
+            
             localStorage.setItem("currentUser", JSON.stringify(userInfo[0]));
             updatePage()
         }
@@ -78,7 +78,7 @@ function logIn() {
     if (success == false){
         //removes password from the field
         document.getElementById("loginPassword").value = ""
-        alert("Username or Password incorrect.")
+        $('#loginErr').fadeIn().delay(700).fadeOut();
     }
     
 }
@@ -91,7 +91,7 @@ function addUser() {
     //checks if the user exists
     for (i=0; i < userArray.length; i++) {
         if (userArray[i].name == document.getElementById("loginUserName").value) {
-            alert("This username already exists.")
+            $('#loginErrExist').fadeIn(60).delay(1000).fadeOut();
             con = false ;
         }
     }
@@ -110,7 +110,10 @@ function addUser() {
             userArray.push(newUser);
             localStorage.setItem("Users", JSON.stringify(userArray)) ;
             localStorage.setItem("isLoggedIn", true);
-            $('#staticBackdrop').modal('hide');
+
+            $('#loginSuccCreate').fadeIn().delay(700).fadeOut();
+            setTimeout(function(){ $('#staticBackdrop').modal('hide') }, 700);
+            
             document.getElementById("loginPassword").value = ''
             localStorage.setItem("currentUser", JSON.stringify(newUser));
             
@@ -197,30 +200,126 @@ function sendMsg(){
         document.getElementById("msg-input").value = '' ;
 
         //scrolls to show the newly sent message
-        var elem = document.getElementById('message-panel');
-        elem.scrollTop = elem.scrollHeight;
+        scrollDown('message-panel')
+        
+        //TEMP - This just call a random response
+        setTimeout(function(){ getMsg() }, 1200)
+
     }
+}
+
+//--------------------------------------RECIEVE MESSAGE-----------------------------------
+
+function getMsg(){
+    //List of random responses
+    var arr = [
+    "Woah hey there! 🙃", 
+    "I honestly have no idea what I'm doing...", 
+    "Excuse me?!1!", 
+    "Oh, it works!", 
+    "Oh ok, yeah thats a pretty cool thing you are talking about right now, damn!", 
+    "lol 🤡, wanna see me do it again?", 
+    "No ways", 
+    "Yep",
+    "No you.",
+    "They did nothing as the raccoon attacked the lady’s bag of food, unbeleivable!",
+    "Potato wedges probably are not best for relationships.",
+    "When I cook spaghetti, I like to boil it a few minutes past al dente so the noodles are super slippery.",
+    "Even though he thought the world was flat he didn’t see the irony of wanting to travel around the world.",
+    "Reboot and go stand in a corner.",
+    "Have you been feeding the hamster inside your computer?",
+    "Hello there, have you finally come to fight me? I wonder who will be the victor... 🤠",
+    "Here, have some Lorem ipsum \n  dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    "Why do you keep sending gibberish? Do you take me for a fool?!",
+    "Hey, I'm Molly, howsit"]
+
+    var msgPanel = document.getElementById("message-panel");
+    //prevents send if field is empty
+    
+    //creates 24hour a time variable
+    var curTime = new Date().toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: "2-digit", 
+        hour12: false 
+    });
+    
+    //message div created 
+    let msgDiv = document.createElement('div') 
+    msgDiv.setAttribute('class', 'message-friend mt-3 text-light p-2 shadow') 
+    
+    //message paragraph created
+    let msgP = document.createElement('p') 
+    msgP.setAttribute('class', 'message-content') 
+    //Change this when actual messages are received
+    msgP.appendChild(document.createTextNode(arr[Math.floor(Math.random() * arr.length)])) 
+
+    //time paragraph created
+    let msgT = document.createElement('p') ;
+    msgT.setAttribute('class', 'message-time-stamp m-0 font-weight-light small') ;
+    msgT.appendChild(document.createTextNode(curTime)) ;
+
+    msgDiv.appendChild(msgP)
+    msgDiv.appendChild(msgT)
+    
+    msgPanel.appendChild(msgDiv)
+    //inserts the mesage before the form ( because the form is in the same div as the messages )
+    //$( msgDiv ).insertBefore( "#message-input" );
+    
+    scrollDown('message-panel')
 }
 
 //----------------------show friends button-------------------------------
 
 //for mobile screen size. hides messages panel and shows friends list
 function showFriends() {
-    if ($(window).width() < pageBreakPoint){
+    /*if ($(window).width() < pageBreakPoint){
         $('#friends-container').fadeIn('fast');
-    }
+        $('#msg-container').hide();
+    }*/
+    $('#friends-container').fadeIn('fast');
+    $('#msg-container').hide();
+    
 }
 
 //----------------------show messages------------------------------------
 
 //for mobile screen size. when a friend is clicked on, it hides friends list and shows messages panel
 function showMessages() {
+    $('#msg-container').fadeIn('fast');
     if ($(window).width() < pageBreakPoint){
-        $('#friends-container').fadeOut('fast');
+        $('#friends-container').hide();
         $('#msg-container').fadeIn('fast');
     }
+    /*if ($(window).width() > pageBreakPoint){
+        $('#msg-container').fadeIn(80);
+    }*/
+}
+
+$( window ).resize(function() {
+    //if the window is big enough to fit both windows, both are shown
     if ($(window).width() > pageBreakPoint){
         $('#msg-container').fadeIn(80);
+        $('#friends-container').fadeIn(80);
     }
+});
+
+//------------------SCROLL TO BOTTOM FUNC--------------------------------
+
+//scrolls down to bottom function
+function scrollDown(elem){
+    var elemt = document.getElementById(elem);
+    elemt.scrollTop = elemt.scrollHeight;
 }
-    
+
+//----------------------check Scroll-------------------------------------
+
+//when the user scroll  a little further up from the bottom in the chat window
+//the scroll to bottom button is displayed
+function checkScroll() {
+    if ($('#message-panel').scrollTop() + 1000 < $('#message-panel').prop('scrollHeight')) {
+        $('#scrollToBottomBtn').show();
+    }else {
+        $('#scrollToBottomBtn').fadeOut(100);
+    }
+
+}
