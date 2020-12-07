@@ -32,6 +32,8 @@ $( document ).ready(function() {
             $("#sendText").fadeIn(150);
         }
     }
+    //scrolls down the message window to latest messages on load
+    scrollDown('message-panel');
     
 });
 
