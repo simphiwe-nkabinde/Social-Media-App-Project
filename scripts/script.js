@@ -32,7 +32,8 @@ $( document ).ready(function() {
             $("#sendText").fadeIn(150);
         }
     }
-    
+    //scrolls down the message window to latest messages on load
+    scrollDown('message-panel');
 });
 
 var userArray = []
@@ -65,6 +66,7 @@ function logIn() {
             //if the name password combo exists, the object is push to the "current user"
             localStorage.setItem("isLoggedIn", true);
             userInfo.push(userArray[i])
+            $('#loginErr').hide();
             $('#loginSucc').fadeIn(60).delay(700).fadeOut();
             //user is alerted and the login modal is hidden
             setTimeout(function(){ $('#staticBackdrop').modal('hide') }, 700);
@@ -99,7 +101,7 @@ function addUser() {
     if (con != false) {
         if(document.getElementById("loginUserName").value == '' 
         || document.getElementById("loginPassword").value == ''){
-            alert("Please fill all fields.")
+            $('#loginErr2').fadeIn(60).delay(1000).fadeOut();
         }
         //if all requirements are met, a user object is created and pushed to the array and stored to local info
         else {
@@ -234,7 +236,6 @@ function getMsg(){
     "Hey, I'm Molly, howsit"]
 
     var msgPanel = document.getElementById("message-panel");
-    //prevents send if field is empty
     
     //creates 24hour a time variable
     var curTime = new Date().toLocaleTimeString([], { 
@@ -286,6 +287,7 @@ function showFriends() {
 //for mobile screen size. when a friend is clicked on, it hides friends list and shows messages panel
 function showMessages() {
     $('#msg-container').fadeIn('fast');
+    
     if ($(window).width() < pageBreakPoint){
         $('#friends-container').hide();
         $('#msg-container').fadeIn('fast');
@@ -293,6 +295,7 @@ function showMessages() {
     /*if ($(window).width() > pageBreakPoint){
         $('#msg-container').fadeIn(80);
     }*/
+    scrollDown('message-panel')
 }
 
 $( window ).resize(function() {
@@ -316,10 +319,18 @@ function scrollDown(elem){
 //when the user scroll  a little further up from the bottom in the chat window
 //the scroll to bottom button is displayed
 function checkScroll() {
-    if ($('#message-panel').scrollTop() + 1000 < $('#message-panel').prop('scrollHeight')) {
-        $('#scrollToBottomBtn').show();
+    if ( $(window).height() < 1000 ){
+        if ($('#message-panel').scrollTop() + 1000 < $('#message-panel').prop('scrollHeight')) {
+            $('#scrollToBottomBtn').show();
+        }else {
+            $('#scrollToBottomBtn').fadeOut(100);
+        }
     }else {
-        $('#scrollToBottomBtn').fadeOut(100);
+        if ($('#message-panel').scrollTop() + 1400 < $('#message-panel').prop('scrollHeight')) {
+            $('#scrollToBottomBtn').show();
+        }else {
+            $('#scrollToBottomBtn').fadeOut(100);
+        }
     }
 
 }

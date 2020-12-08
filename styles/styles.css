@@ -52,6 +52,11 @@ body.modal-open > :not(.modal) {
   -ms-filter: blur(4px);
   filter: blur(4px);
 }
+
+#static-backdrop{
+  padding: 0px;
+}
+
 .modal-input {
   border-bottom: 1px #343a40 solid;
 }
@@ -67,6 +72,22 @@ body.modal-open > :not(.modal) {
 .modal-custom {
   width: 350px;
 }
+
+@media only screen and (max-width: 400px){
+  .modal-custom {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 576px){
+  .modal-custom {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .modal-btn-sign-in {
   width: 200px;
   height: 30px;
@@ -166,7 +187,6 @@ body.modal-open > :not(.modal) {
   #friends-container {
     max-width: 10000px;
   }
-
 }
 
 #contactHead {
@@ -186,6 +206,7 @@ body.modal-open > :not(.modal) {
 .friendRow > a {
   text-decoration: none;
   overflow: hidden;
+  outline: none;
 }
 
 .friendRow > img {
@@ -258,10 +279,11 @@ body.modal-open > :not(.modal) {
 }
 
 #message-panel {
+  overscroll-behavior-y: contain;
   margin-top: 0px;
   padding-top: 0px;
   margin-bottom: 0px;
-  overflow-x: hidden; 
+  /*overflow-x: hidden; */
   overflow-y: auto;
   height: calc(100vh - 15em);
   scrollbar-width: none;
