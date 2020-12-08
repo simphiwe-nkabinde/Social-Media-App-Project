@@ -34,6 +34,10 @@ $( document ).ready(function() {
     }
     //scrolls down the message window to latest messages on load
     scrollDown('message-panel');
+<<<<<<< HEAD
+=======
+    
+>>>>>>> eb8de47a8c39132b457fd479cc0f2c9e04b28649
 });
 
 var userArray = []
